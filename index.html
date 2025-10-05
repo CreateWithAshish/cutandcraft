@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Portfolio Site</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body.modal-open { overflow: hidden; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="max-w-5xl mx-auto p-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-extrabold">Ashish Tudu</h1>
+      <p class="text-sm text-gray-600">AI-Assisted Content Creator • Patna, Bihar </p>
+    </div>
+    <div class="flex gap-3">
+      <a href="https://www.canva.com/design/DAG048X2-Uo/7dh0JT0l_I8hjz4i-kgh3w/view?utm_content=DAG048X2-Uo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h35ecd600b4" target="_blank"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border shadow-sm hover:shadow-md">
+        Download Resume
+      </a>
+      <a href="mailto:btwashishtudu@gmail.com"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700">
+        Email
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+
+    <!-- Resume + Portfolio -->
+    <section class="md:col-span-2 bg-white rounded-2xl p-6 shadow">
+      <h2 class="text-xl font-semibold mb-3">Resume</h2>
+      <p class="text-sm text-gray-700">
+        Creative content professional with 3 years designing social campaigns, editing short-form video, and producing data-driven social assets.
+      </p>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-medium">Skills</h3>
+          <ul class="mt-2 space-y-1 text-sm text-gray-600">
+            <li>• Canva</li>
+            <li>• Video Editing (Premiere/Vn/CapCut)</li>
+            <li>• Motion Graphics</li>
+            <li>• Copywriting</li>
+            <li>• Branding</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium">Experience</h3>
+          <div class="mt-2 text-sm text-gray-600">
+            <div class="mb-2">
+              <div class="font-medium">AI-Assisted Content Creator.</div>
+              <div class="text-xs text-gray-500">2022 - Present</div>
+              <ul class="mt-1 list-disc list-inside">
+                <li>Led social campaigns delivering 3x engagement growth.</li>
+                <li>Produced 50+ short videos and templates for cross-platform use.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-6">
+
+      <h2 class="text-xl font-semibold mb-3">Portfolio</h2>
+      <p class="text-sm text-gray-600 mb-4">
+        Canva designs and edited videos. Click any item for a preview — source & edit links shown inside the preview modal.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="portfolio-grid">
+        <!-- Portfolio items inserted by JS -->
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="bg-white rounded-2xl p-6 shadow">
+      <h3 class="font-semibold">Contact</h3>
+      <p class="text-sm text-gray-600 mt-2">btwashishtudu@gmail.com • +91 ******8872</p>
+
+      <div class="mt-6">
+        <h4 class="font-medium">Quick Links</h4>
+        <ul class="mt-2 text-sm text-sky-600 space-y-2">
+          <li><a href="https://www.canva.com/design/DAG048X2-Uo/7dh0JT0l_I8hjz4i-kgh3w/view?utm_content=DAG048X2-Uo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h35ecd600b4" target="_blank">Download Resume (PDF)</a></li>
+          <li><a href="https://createwithashish.github.io/vCard/" target="_blank">Portfolio Section</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-6 hidden">
+    <div class="bg-white w-full max-w-3xl rounded-2xl shadow-lg overflow-auto max-h-[90vh]">
+      <div class="p-4 flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold" id="modal-title"></h3>
+          <p class="text-sm text-gray-600" id="modal-description"></p>
+        </div>
+        <div>
+          <button id="modal-close" class="text-gray-600">Close</button>
+        </div>
+      </div>
+      <div class="p-4 border-t" id="modal-content"></div>
+      <div class="p-4 border-t text-right">
+        <button id="modal-close-bottom" class="px-4 py-2 rounded-lg border">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="max-w-5xl mx-auto p-6 text-center text-xs text-gray-500">
+    Built with ❤️ • Demo content included
+  </footer>
+
+<script>
+  const portfolio = [
+    {
+      id: 1,
+      type: "design",
+      title: "Instagram Promo",
+      description: "Professional social media post designed in Canva.",
+      previewImage: "D:\MadeEasy\ArtShowCase\Src\Personal branding.png",
+      canvaLink: "https://www.canva.com/design/DAG05ToC_5k/MH2vSag_USwK1TEQ_ugHbw/view?utm_content=DAG05ToC_5k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h40fef79336",
+      sourceFile: "https://www.canva.com/design/DAG05ToC_5k/MH2vSag_USwK1TEQ_ugHbw/view?utm_content=DAG05ToC_5k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h40fef79336",
+    },
+    {
+      id: 2,
+      type: "design",
+      title: "LinkedIn Carousel",
+      description: "Corporate carousel design highlighting results.",
+      previewImage: "https://via.placeholder.com/400x300?text=Design+2",
+      canvaLink: "https://www.canva.com/",
+      sourceFile: "https://www.canva.com/",
+    },
+    {
+      id: 3,
+      type: "video",
+      title: "Promo Video",
+      description: "Short promotional video demo.",
+      previewImage: "https://via.placeholder.com/400x300?text=Video+1",
+      videoSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+      projectFiles: "https://www.w3schools.com/html/mov_bbb.mp4",
+    },
+    {
+      id: 4,
+      type: "design",
+      title: "Instagram Story Set",
+      description: "Set of stories created for demo event.",
+      previewImage: "https://via.placeholder.com/400x300?text=Design+3",
+      canvaLink: "https://www.canva.com/",
+      sourceFile: "https://www.canva.com/",
+    },
+  ];
+
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalContent = document.getElementById('modal-content');
+  const closeModalButtons = [document.getElementById('modal-close'), document.getElementById('modal-close-bottom')];
+
+  portfolio.forEach(item => {
+    const article = document.createElement('article');
+    article.className = "bg-gray-50 rounded-lg overflow-hidden shadow-sm";
+
+    const button = document.createElement('button');
+    button.className = "block text-left w-full";
+    button.onclick = () => openModal(item);
+
+    const thumbDiv = document.createElement('div');
+    thumbDiv.className = "h-44 w-full bg-gray-200 flex items-center justify-center overflow-hidden";
+    const img = document.createElement('img');
+    img.src = item.previewImage;
+    img.alt = item.title;
+    img.className = "object-cover w-full h-full";
+    thumbDiv.appendChild(img);
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = "p-3";
+    infoDiv.innerHTML = `<h4 class="font-semibold">${item.title}</h4>
+                         <p class="mt-1 text-xs text-gray-600">${item.description}</p>
+                         <div class="mt-3 text-xs text-sky-600">Preview</div>`;
+
+    button.appendChild(thumbDiv);
+    button.appendChild(infoDiv);
+    article.appendChild(button);
+    portfolioGrid.appendChild(article);
+  });
+
+  function openModal(item){
+    modal.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    modalTitle.innerText = item.title;
+    modalDescription.innerText = item.description;
+    modalContent.innerHTML = '';
+
+    if(item.type === 'video'){
+      const video = document.createElement('video');
+      video.controls = true;
+      video.src = item.videoSrc;
+      video.className = "w-full rounded mb-3";
+      modalContent.appendChild(video);
+
+      modalContent.innerHTML += `<div class="mt-3 text-sm">
+        <div>Project files / source: <a class="text-sky-600" href="${item.projectFiles}" target="_blank">Open</a></div>
+        <div class="mt-2">Download: <a class="text-sky-600" href="${item.videoSrc}" target="_blank">MP4</a></div>
+      </div>`;
+    } else {
+      modalContent.innerHTML += `<img src="${item.previewImage}" alt="${item.title}" class="w-full rounded mb-3"/>`;
+      modalContent.innerHTML += `<div class="mt-3 text-sm">
+        <div>Canva share / edit link: <a class="text-sky-600" href="${item.canvaLink}" target="_blank">Open in Canva</a></div>
+        <div class="mt-2">Source / Download: <a class="text-sky-600" href="${item.sourceFile}" target="_blank">Download</a></div>
+      </div>`;
+    }
+  }
+
+  closeModalButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      document.body.classList.remove('modal-open');
+    });
+  });
+</script>
+
+</body>
+</html>
